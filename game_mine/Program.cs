@@ -15,7 +15,7 @@ namespace game_mine
         {
             String[] select;
             public int index;
-            int number;
+            public int number;
             public mainspace(int _number)
             {
                 select = new String[_number];
@@ -79,7 +79,7 @@ namespace game_mine
                 {
                     if (_index.index == 0)
                     {
-                        _index.index = 0;
+                        return;
                     }
                     else
                     {
@@ -88,7 +88,14 @@ namespace game_mine
                 }
                 public void movedown(mainspace _index)
                 {
-                    _index.index = _index.index + 1;
+                    if (_index.number-1 <=_index.index)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        _index.index = _index.index + 1;
+                    }
                 }
 
             }
@@ -131,11 +138,13 @@ namespace game_mine
                     mainspace m = new mainspace(3);
                     select s = new select(4);
                     move move = new move();
+                    
                     while (true)
                     {
-                        m.Render();
-
-                        switch (Console.ReadKey().Key)
+                   
+                    m.Render();
+                     ConsoleKey cki = Console.ReadKey().Key;
+                        switch (cki)
                         {
                             case ConsoleKey.UpArrow:
                                 move.moveup(m);
@@ -144,15 +153,18 @@ namespace game_mine
                                 move.movedown(m);
                                 break;
                         }
-                        if (Console.ReadKey().Key == ConsoleKey.Enter && m.index == 0)
+                        if (cki == ConsoleKey.Enter && m.index == 0)
                         {
-                            choice.Render(); // s.Render();
-                            Console.ReadKey();
+                        //    choice.Render(); // s.Render();
+                            
+                        대화창.answer("이번생엔진짜여자친구를사귈수없는건가... 왜내가항상좋아했던,,여자들은나를안좋아하는거지");
+                        대화창.answer("그의나이 51세아직여자친구가 없다");
+                        Console.ReadKey();
                         }
-                        else if (Console.ReadKey().Key == ConsoleKey.Enter && m.index == 1)
+                        else if (cki == ConsoleKey.Enter && m.index == 1)
                         {
                           예건.Render();
-                        Console.ReadKey();
+                          Console.ReadKey();
                         
                         }
 
